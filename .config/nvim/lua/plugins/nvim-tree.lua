@@ -94,8 +94,8 @@ return {
             end,
             view = {
                 centralize_selection = true,
-                adaptive_size = false,
-                side = "right",
+                adaptive_size = true,
+                side = "left",
                 preserve_window_proportions = true,
                 width = {
                     max = -1,
