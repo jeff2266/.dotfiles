@@ -15,12 +15,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Appearance
-vim.cmd.colorscheme("habamax")
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
--- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
--- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- Keymaps
 vim.keymap.set("n", "<leader><leader>", ":Telescope git_files<cr>", { desc = "Find git file" })
@@ -68,6 +65,8 @@ require("lazy").setup({
     checker = { enabled = true },
     install = { colorscheme = nil },
 })
+
+vim.cmd.colorscheme("tokyonight")
 
 -- clear FileExplorer appropriately to prevent netrw from launching on folders
 -- netrw may or may not be loaded before telescope-file-browser config
