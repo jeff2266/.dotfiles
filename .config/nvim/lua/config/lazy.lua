@@ -23,9 +23,8 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
 
 -- Keymaps
--- vim.keymap.set("n", "<c-b>", ":NvimTreeToggle<cr>", { desc = "Toggle explorer" })
-vim.keymap.set("n", "<c-b>", ":Telescope file_browser<cr>", { desc = "Toggle explorer" })
 vim.keymap.set("n", "<leader><leader>", ":Telescope git_files<cr>", { desc = "Find git file" })
+vim.keymap.set("n", "<leader>fe", ":Telescope file_browser<cr>", { desc = "Toggle explorer" })
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", { desc = "Find file" })
 vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", { desc = "Grep current directory" })
 vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", { desc = "Find buffers" })
@@ -70,12 +69,9 @@ require("lazy").setup({
     install = { colorscheme = nil },
 })
 
-local telescope = require("telescope")
-telescope.load_extension "file_browser"
-local netrw_bufname
-
 -- clear FileExplorer appropriately to prevent netrw from launching on folders
 -- netrw may or may not be loaded before telescope-file-browser config
+local netrw_bufname
 pcall(vim.api.nvim_clear_autocmds, { group = "FileExplorer" })
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
