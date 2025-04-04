@@ -16,32 +16,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Tab spacing
-vim.opt.tabstop=4
-vim.opt.shiftwidth=4
-vim.opt.expandtab=true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 -- Line numbering
-vim.opt.number=true
-vim.opt.relativenumber=true
-vim.opt.scrolloff=4
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 4
 
 -- Remap leader
-vim.g.mapleader=" "
-vim.g.maplocalleader="\\"
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
--- Keymaps
-vim.keymap.set("n", "<leader><leader>", ":Telescope git_files<cr>", { desc = "Find git file" })
-vim.keymap.set("n", "<leader>fe", ":Telescope file_browser<cr>", { desc = "Toggle explorer" })
-vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", { desc = "Find file" })
-vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", { desc = "Grep current directory" })
-vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", { desc = "Find buffers" })
-
-vim.keymap.set("n", "<c-f>", ":Telescope lsp_references<cr>", { desc = "Find all references" })
-vim.keymap.set("n", "<c-k>f", ":lua vim.lsp.buf.format()<cr>", { desc = "Format file" })
 
 -- Sync + with unnamed register on unfocus
 vim.api.nvim_create_autocmd({ "FocusGained" }, {
@@ -80,49 +70,15 @@ require("lazy").setup({
     install = { colorscheme = nil },
 })
 
+-- Colorscheme
 vim.cmd.colorscheme("tokyonight")
 
--- clear FileExplorer appropriately to prevent netrw from launching on folders
--- netrw may or may not be loaded before telescope-file-browser config
-local netrw_bufname
-pcall(vim.api.nvim_clear_autocmds, { group = "FileExplorer" })
-vim.api.nvim_create_autocmd("VimEnter", {
-    pattern = "*",
-    once = true,
-    callback = function()
-        pcall(vim.api.nvim_clear_autocmds, { group = "FileExplorer" })
-    end,
-})
+-- Keymaps
+vim.keymap.set("n", "<leader>fe", ":Telescope file_browser path=%:p:h select_buffer=true<cr>", { desc = "File explorer" })
+vim.keymap.set("n", "<leader><leader>", ":Telescope git_files<cr>", { desc = "Find git file" })
+vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", { desc = "Find file" })
+vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", { desc = "Grep current directory" })
+vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", { desc = "Find buffers" })
 
-vim.api.nvim_create_autocmd("BufEnter", {
-    group = vim.api.nvim_create_augroup("telescope-file-browser.nvim", { clear = true }),
-    pattern = "*",
-    callback = function()
-        vim.schedule(function()
-            if vim.bo[0].filetype == "netrw" then
-                return
-            end
-            local bufname = vim.api.nvim_buf_get_name(0)
-            if vim.fn.isdirectory(bufname) == 0 then
-                _, netrw_bufname = pcall(vim.fn.expand, "#:p:h")
-                return
-            end
-
-            -- prevents reopening of file-browser if exiting without selecting a file
-            if netrw_bufname == bufname then
-                netrw_bufname = nil
-                return
-            else
-                netrw_bufname = bufname
-            end
-
-            -- ensure no buffers remain with the directory name
-            vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = 0 })
-
-            require("telescope").extensions.file_browser.file_browser {
-                cwd = vim.fn.expand "%:p:h",
-            }
-        end)
-    end,
-    desc = "telescope-file-browser.nvim replacement for netrw",
-})
+vim.keymap.set("n", "<c-f>", ":Telescope lsp_references<cr>", { desc = "Find all references" })
+vim.keymap.set("n", "<c-k>f", ":lua vim.lsp.buf.format()<cr>", { desc = "Format file" })

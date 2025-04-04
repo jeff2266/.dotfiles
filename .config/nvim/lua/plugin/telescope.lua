@@ -6,15 +6,6 @@ return {
         'nvim-tree/nvim-web-devicons',
         'nvim-telescope/telescope-file-browser.nvim',
     },
-    extensions = {
-        file_browser = {
-            grouped = true,
-            -- disables netrw and use telescope-file-browser in its place
-            hijack_netrw = true,
-            mappings = {
-            },
-        },
-    },
     config = function()
         local ts = require('telescope')
         ts.setup {
@@ -31,6 +22,12 @@ return {
             pickers = {
             },
             extensions = {
+                file_browser = {
+                    hijack_netrw = true,
+                    hidden = { file_browser = true, folder_browser = true },
+                    display_stat = { date = true, size = true, mode = false },
+                    use_fd = false,
+                }
             }
         }
         ts.load_extension('file_browser')
