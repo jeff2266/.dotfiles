@@ -15,6 +15,20 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Tab spacing
+vim.opt.tabstop=4
+vim.opt.shiftwidth=4
+vim.opt.expandtab=true
+
+-- Line numbering
+vim.opt.number=true
+vim.opt.relativenumber=true
+vim.opt.scrolloff=4
+
+-- Remap leader
+vim.g.mapleader=" "
+vim.g.maplocalleader="\\"
+
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
