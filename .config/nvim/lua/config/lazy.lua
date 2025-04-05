@@ -24,6 +24,10 @@ vim.opt.expandtab = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 4
+vim.opt.signcolumn = "yes"
+
+-- Cursor highlighting
+vim.opt.cursorline = true
 
 -- Remap leader
 vim.g.mapleader = " "
