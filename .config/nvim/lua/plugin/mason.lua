@@ -51,6 +51,7 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" }
     },
     {
         "folke/lazydev.nvim",
