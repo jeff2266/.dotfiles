@@ -16,7 +16,7 @@ return {
         config = function()
             local ts = require("telescope")
             local tsa = require("telescope.actions")
-            -- local fb_actions = require "telescope._extensions.file_browser.actions"
+            local fb_actions = require "telescope._extensions.file_browser.actions"
             ts.setup {
                 defaults = {
                     layout_strategy = "horizontal",
@@ -27,21 +27,34 @@ return {
                     path_display = { "filename_first" },
                     mappings = {
                         i = {
-                            ["<C-l>"] = false,
                             ["<C-c>"] = false,
                             ["<C-x>"] = false,
                             ["<C-v>"] = false,
                             ["<C-t>"] = false,
                             ["<C-w>"] = false,
-                            ["Tab"] = false,
-                            ["S-Tab"] = false,
                             ["<C-q>"] = false,
+                            ["<C-l>"] = false,
+                            ["<C-/>"] = false,
+                            ["<C-_>"] = false,
                             ["<M-q>"] = false,
-                            ["<C-n>"] = false,
-                            ["<C-p>"] = false,
 
                             ["<C-j>"] = tsa.move_selection_next,
                             ["<C-k>"] = tsa.move_selection_previous,
+                            ["<C-n>"] = tsa.preview_scrolling_down,
+                            ["<C-p>"] = tsa.preview_scrolling_up,
+                        },
+                        n = {
+                            ["<C-x>"] = false,
+                            ["<C-v>"] = false,
+                            ["<C-t>"] = false,
+                            ["<C-q>"] = false,
+                            ["<M-q>"] = false,
+                            ["?"] = false,
+
+                            ["<C-j>"] = tsa.move_selection_next,
+                            ["<C-k>"] = tsa.move_selection_previous,
+                            ["<C-n>"] = tsa.preview_scrolling_down,
+                            ["<C-p>"] = tsa.preview_scrolling_up,
                         }
                     },
                 },
@@ -55,6 +68,24 @@ return {
                         grouped = true,
                         mappings = {
                             i = {
+                                ["<A-c>"] = false,
+                                -- ["<S-CR>"] = fb_actions.create_from_prompt,
+                                -- ["<A-r>"] = fb_actions.rename,
+                                -- ["<A-m>"] = fb_actions.move,
+                                -- ["<A-y>"] = fb_actions.copy,
+                                -- ["<A-d>"] = fb_actions.remove,
+                                -- ["<C-o>"] = fb_actions.open,
+                                -- ["<C-g>"] = fb_actions.goto_parent_dir,
+                                -- ["<C-e>"] = fb_actions.goto_home_dir,
+                                -- ["<C-w>"] = fb_actions.goto_cwd,
+                                -- ["<C-t>"] = fb_actions.change_cwd,
+                                -- ["<C-f>"] = fb_actions.toggle_browser,
+                                -- ["<C-h>"] = fb_actions.toggle_hidden,
+                                -- ["<C-s>"] = fb_actions.toggle_all,
+                                -- ["<bs>"] = fb_actions.backspace,
+                                -- [Path.path.sep] = fb_actions.path_separator,
+                                -- ["<A-n>"] = fb_actions.create,
+                                ["<C-h>"] = fb_actions.goto_parent_dir,
                             },
                             n = {
                             }
