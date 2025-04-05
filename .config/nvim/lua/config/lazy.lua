@@ -74,10 +74,12 @@ require("lazy").setup({
     install = { colorscheme = nil },
 })
 
--- Colorscheme
-vim.cmd.colorscheme("tokyonight")
-
 -- Keymaps
+vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "File explorer" })
+
+vim.keymap.set("n", "<leader>bb", ":bn<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bd", ":bd<cr>", { desc = "Delete buffer" })
+
 vim.keymap.set("n", "<leader>fe", ":Telescope file_browser path=%:p:h select_buffer=true<cr>", { desc = "File explorer" })
 vim.keymap.set("n", "<leader><leader>", ":Telescope git_files<cr>", { desc = "Find git file" })
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", { desc = "Find file" })

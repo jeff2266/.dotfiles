@@ -18,9 +18,19 @@ return {
                 sorting_strategy = "ascending",
                 path_display = { "filename_first" },
                 mappings = {
+                    i = {
+                        ["<C-l>"] = false,
+                        ["<C-c>"] = false,
+                        ["<C-x>"] = false,
+                        ["<C-v>"] = false,
+                        ["<C-t>"] = false,
+                        ["<C-w>"] = false,
+                        ["Tab"] = false,
+                        ["S-Tab"] = false,
+                        ["<C-q>"] = false,
+                        ["<M-q>"] = false,
+                    }
                 },
-            },
-            mappings = {
             },
             pickers = {
             },
@@ -32,8 +42,11 @@ return {
                     grouped = true,
                     use_fd = false,
                     mappings = {
-                        ["i"] = {
+                        i = {
                             ["<C-j>"] = fb_actions.goto_cwd,
+                        },
+                        n = {
+                            ["n"] = fb_actions.create,
                         }
                     }
                 },
