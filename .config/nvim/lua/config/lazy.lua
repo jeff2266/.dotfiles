@@ -76,15 +76,6 @@ require("lazy").setup({
 
 -- Keymaps
 vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "File explorer" })
-
 vim.keymap.set("n", "<leader>bb", ":bn<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bd", ":bd<cr>", { desc = "Delete buffer" })
-
-vim.keymap.set("n", "<leader>fe", ":Telescope file_browser path=%:p:h select_buffer=true<cr>", { desc = "File explorer" })
-vim.keymap.set("n", "<leader><leader>", ":Telescope git_files<cr>", { desc = "Find git file" })
-vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", { desc = "Find file" })
-vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", { desc = "Grep current directory" })
-vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", { desc = "Find buffers" })
-
-vim.keymap.set("n", "<c-f>", ":Telescope lsp_references<cr>", { desc = "Find all references" })
 vim.keymap.set("n", "<c-k>f", ":lua vim.lsp.buf.format()<cr>", { desc = "Format file" })
