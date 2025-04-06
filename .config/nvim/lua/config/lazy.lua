@@ -77,7 +77,6 @@ require("lazy").setup({
 -- Keymaps
 vim.keymap.set({ "n", "x" }, "<C-d>", "<nop>")
 vim.keymap.set({ "n", "x" }, "<C-u>", "<nop>")
-vim.keymap.set({ "n" }, "grr", "<nop>")
 vim.keymap.set({ "n", "x" }, "<C-j>", "<C-d>", { noremap = true })
 vim.keymap.set({ "n", "x" }, "<C-k>", "<C-u>", { noremap = true })
 vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "File explorer" })

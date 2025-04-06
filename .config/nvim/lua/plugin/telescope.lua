@@ -105,7 +105,8 @@ return {
             vim.keymap.set("n", "<leader>fc", ":Telescope grep_string<cr>",
                 { desc = "Find string under cursor in current directory" })
             vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", { desc = "Find buffers" })
-            vim.keymap.set("n", "<c-f>", ":Telescope lsp_references<cr>", { desc = "Find all references" })
+
+            vim.keymap.set("n", "grr", ":Telescope lsp_references<cr>", { desc = "Find all references" })
         end,
     },
 }
