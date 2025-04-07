@@ -73,7 +73,7 @@ config.keys = {
         }
     },
     {
-        key = "w",
+        key = "d",
         mods = "LEADER",
         action = act.CloseCurrentPane { confirm = true },
     },
