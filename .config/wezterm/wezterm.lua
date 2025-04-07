@@ -75,7 +75,7 @@ config.keys = {
     {
         key = "w",
         mods = "LEADER",
-        action = act.CloseCurrentPane { confirm = false },
+        action = act.CloseCurrentPane { confirm = true },
     },
     {
         key = "z",
@@ -89,8 +89,10 @@ config.key_tables = {
         { key = "RightArrow", action = act.AdjustPaneSize { "Right", 4 } },
         { key = "UpArrow", action = act.AdjustPaneSize { "Up", 8 } },
         { key = "DownArrow", action = act.AdjustPaneSize { "Down", 4 } },
+        { key = 'Escape', action = 'PopKeyTable' },
     },
 }
+config.enable_tab_bar = false
 config.window_frame = {
     font_size = 11.0,
 }
