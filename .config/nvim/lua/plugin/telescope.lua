@@ -70,12 +70,17 @@ return {
                             i = {
                                 ["<A-c>"] = false,
                                 -- ["<S-CR>"] = fb_actions.create_from_prompt,
+                                ["<S-CR>"] = false,
                                 -- ["<A-r>"] = fb_actions.rename,
+                                ["<C-r>"] = fb_actions.rename,
                                 -- ["<A-m>"] = fb_actions.move,
                                 -- ["<A-y>"] = fb_actions.copy,
+                                ["<C-y>"] = fb_actions.copy,
                                 -- ["<A-d>"] = fb_actions.remove,
+                                ["<C-d>"] = fb_actions.remove,
                                 -- ["<C-o>"] = fb_actions.open,
                                 -- ["<C-g>"] = fb_actions.goto_parent_dir,
+                                ["<C-h>"] = fb_actions.goto_parent_dir,
                                 -- ["<C-e>"] = fb_actions.goto_home_dir,
                                 -- ["<C-w>"] = fb_actions.goto_cwd,
                                 -- ["<C-t>"] = fb_actions.change_cwd,
@@ -85,9 +90,22 @@ return {
                                 -- ["<bs>"] = fb_actions.backspace,
                                 -- [Path.path.sep] = fb_actions.path_separator,
                                 -- ["<A-n>"] = fb_actions.create,
-                                ["<C-h>"] = fb_actions.goto_parent_dir,
+                                ["<C-n>"] = fb_actions.create,
                             },
                             n = {
+                                -- ["c"] = fb_actions.create,
+                                -- ["r"] = fb_actions.rename,
+                                -- ["m"] = fb_actions.move,
+                                -- ["y"] = fb_actions.copy,
+                                -- ["d"] = fb_actions.remove,
+                                -- ["o"] = fb_actions.open,
+                                -- ["g"] = fb_actions.goto_parent_dir,
+                                -- ["e"] = fb_actions.goto_home_dir,
+                                -- ["w"] = fb_actions.goto_cwd,
+                                -- ["t"] = fb_actions.change_cwd,
+                                -- ["f"] = fb_actions.toggle_browser,
+                                -- ["h"] = fb_actions.toggle_hidden,
+                                -- ["s"] = fb_actions.toggle_all,
                             }
                         }
                     },
@@ -97,13 +115,13 @@ return {
             ts.load_extension("file_browser")
 
             vim.keymap.set("n", "<leader>fe", ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
-                { desc = "File explorer" })
+            { desc = "File explorer" })
             vim.keymap.set("n", "<leader><leader>", ":Telescope git_files<cr>", { desc = "Find git file" })
             vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", { desc = "Find files in current directory" })
             vim.keymap.set("n", "<leader>fs", ":Telescope live_grep<cr>",
-                { desc = "Grep for string in files under current directory" })
+            { desc = "Grep for string in files under current directory" })
             vim.keymap.set("n", "<leader>fc", ":Telescope grep_string<cr>",
-                { desc = "Find string under cursor in current directory" })
+            { desc = "Find string under cursor in current directory" })
             vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", { desc = "Find buffers" })
 
             vim.keymap.set("n", "grr", ":Telescope lsp_references<cr>", { desc = "Find all references" })

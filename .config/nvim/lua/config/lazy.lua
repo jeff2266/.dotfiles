@@ -73,12 +73,15 @@ require("lazy").setup({
     checker = { enabled = true },
     install = { colorscheme = nil },
 })
+require("lazy.view.config").keys.close = "<esc>"
 
 -- Keymaps
 vim.keymap.set({ "n", "x" }, "<C-d>", "<nop>")
 vim.keymap.set({ "n", "x" }, "<C-u>", "<nop>")
+vim.keymap.set("n", "Q", "<nop>", { noremap = true })
+vim.keymap.set("n", "q:", "<nop>", { noremap = true })
 vim.keymap.set({ "n", "x" }, "<C-j>", "<C-d>", { noremap = true })
 vim.keymap.set({ "n", "x" }, "<C-k>", "<C-u>", { noremap = true })
-vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "File explorer" })
+vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "No highlights" })
 vim.keymap.set("n", "<leader>bb", ":bn<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bd", ":bd<cr>", { desc = "Delete buffer" })
