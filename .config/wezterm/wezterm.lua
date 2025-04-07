@@ -15,6 +15,7 @@ config.launch_menu = {
         -- Optional label to show in the launcher. If omitted, a label
         -- is derived from the `args`
         label = "Powershell",
+
         -- The argument array to spawn.  If omitted the default program
         -- will be used as described in the documentation above
         args = { "powershell.exe" },
@@ -24,6 +25,7 @@ config.launch_menu = {
         -- escape sequence will be used (see the Shell Integration
         -- docs), falling back to the home directory.
         -- cwd = "/some/path"
+        domain = { DomainName = "local" }
     
         -- You can override environment variables just for this command
         -- by setting this here.  It has the same semantics as the main
@@ -80,6 +82,11 @@ config.keys = {
         mods = "LEADER",
         action = act.TogglePaneZoomState,
     },
+    {
+        key = "t",
+        mods = "LEADER",
+        action = act.ShowLauncher,
+    },
 }
 config.key_tables = {
     resize_panes = {
@@ -90,7 +97,7 @@ config.key_tables = {
         { key = 'Escape', action = 'PopKeyTable' },
     },
 }
-config.enable_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
 config.window_frame = {
     font_size = 11.0,
 }
