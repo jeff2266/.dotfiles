@@ -6,7 +6,10 @@ local config = wezterm.config_builder()
 local act = wezterm.action
 
 -- This is where you actually apply your config choices
-config.default_prog = { "ubuntu.exe" }
+-- Use default domain instead of default prog so current working 
+-- directory can be passed to new sessions
+-- config.default_prog = { "ubuntu.exe" }
+config.default_domain = "WSL:Ubuntu"
 config.launch_menu = {
     {
         -- Optional label to show in the launcher. If omitted, a label
@@ -54,11 +57,6 @@ config.keys = {
         mods = "LEADER",
         action = act.ActivatePaneDirection "Next"
     },
-    {
-        key = "a",
-        mods = "LEADER|CTRL",
-        action = act.ActivatePaneDirection "Next"
-    }, 
     {
         key = "Space",
         mods = "LEADER",
