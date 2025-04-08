@@ -117,6 +117,13 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$PATH:$HOME/.local/bin"
 
+# Send 9;9; OSC to allow new terminal sessions to open in CWD
+# Note in Windows Terminal, must start `wsl.exe -d Ubuntu`, not Ubuntu.exe
+keep_current_path() {
+    printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+}
+precmd_functions+=(keep_current_path)
+
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #   exec tmux
 # fi
