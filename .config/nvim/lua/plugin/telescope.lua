@@ -136,6 +136,7 @@ return {
             vim.keymap.set("n", "<leader>fd", ":Telescope diagnostics<cr>", { desc = "List diagnostics" })
 
             vim.keymap.set("n", "grr", ":Telescope lsp_references<cr>", { desc = "Find all references" })
+            vim.keymap.set("n", "gd", ":Telescope lsp_definitions<cr>", { desc = "Go to definition" })
         end,
     },
 }
