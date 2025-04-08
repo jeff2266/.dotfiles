@@ -40,6 +40,8 @@ return {
                             ["<C-_>"] = false,
                             ["<M-q>"] = false,
 
+                            ["<Tab>"] = tsa.toggle_selection,
+                            ["<S-Tab>"] = tsa.toggle_all,
                             ["<C-j>"] = tsa.move_selection_next,
                             ["<C-k>"] = tsa.move_selection_previous,
                             ["<C-n>"] = tsa.preview_scrolling_down,
@@ -54,6 +56,8 @@ return {
                             ["<C-q>"] = false,
                             ["<M-q>"] = false,
 
+                            ["<Tab>"] = tsa.toggle_selection,
+                            ["<S-Tab>"] = tsa.toggle_all,
                             ["<C-j>"] = tsa.move_selection_next,
                             ["<C-k>"] = tsa.move_selection_previous,
                             ["<C-n>"] = tsa.preview_scrolling_down,
