@@ -62,6 +62,12 @@ vim.g.clipboard = {
     cache_enabled = 0,
 }
 
+-- Keymap resets
+vim.keymap.set("n", "Q", "<nop>", { noremap = true })
+vim.keymap.set("n", "q:", "<nop>", { noremap = true })
+vim.keymap.set({ "n", "x" }, "<C-d>", "<nop>")
+vim.keymap.set({ "n", "x" }, "<C-u>", "<nop>")
+
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
@@ -76,10 +82,6 @@ require("lazy").setup({
 require("lazy.view.config").keys.close = "<esc>"
 
 -- Keymaps
-vim.keymap.set({ "n", "x" }, "<C-d>", "<nop>")
-vim.keymap.set({ "n", "x" }, "<C-u>", "<nop>")
-vim.keymap.set("n", "Q", "<nop>", { noremap = true })
-vim.keymap.set("n", "q:", "<nop>", { noremap = true })
 vim.keymap.set({ "n", "x" }, "<C-j>", "<C-d>", { noremap = true })
 vim.keymap.set({ "n", "x" }, "<C-k>", "<C-u>", { noremap = true })
 vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "No highlights" })
