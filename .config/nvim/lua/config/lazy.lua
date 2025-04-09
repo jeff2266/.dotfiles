@@ -1,89 +1,53 @@
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out,                            "WarningMsg" },
-            { "\nPress any key to exit..." },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Tab spacing
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-
--- Line numbering
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.scrolloff = 4
-vim.opt.signcolumn = "yes"
-
--- Cursor highlighting
-vim.opt.cursorline = true
-
--- Remap leader
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
--- Undercurl
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
--- Sync + with unnamed register on unfocus
-vim.api.nvim_create_autocmd({ "FocusGained" }, {
-    pattern = { "*" },
-    command = [[call setreg("@", getreg("+"))]],
-})
-
--- Sync + with unnamed register on unfocus
-vim.api.nvim_create_autocmd({ "FocusLost" }, {
-    pattern = { "*" },
-    command = [[call setreg("+", getreg("@"))]],
-})
-
--- Wsl clipboard configuration
-vim.g.clipboard = {
-    name = "WslClipboard",
-    copy = {
-        ["+"] = "clip.exe",
-    },
-    paste = {
-        ["+"] =
-        'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-    cache_enabled = 0,
-}
-
--- Keymap resets
-vim.keymap.set("n", "Q", "<nop>", { noremap = true })
-vim.keymap.set("n", "q:", "<nop>", { noremap = true })
-vim.keymap.set({ "n", "x" }, "<C-d>", "<nop>")
-vim.keymap.set({ "n", "x" }, "<C-u>", "<nop>")
-
--- Setup lazy.nvim
 require("lazy").setup({
-    spec = {
-        -- import your plugins
-        { import = "plugin" },
+  spec = {
+    -- add LazyVim and import its plugins
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    -- import/override with your plugins
+    { import = "plugins" },
+  },
+  defaults = {
+    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+    lazy = false,
+    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
+    -- have outdated releases, which may break your Neovim install.
+    version = false, -- always use the latest git commit
+    -- version = "*", -- try installing the latest stable version for plugins that support semver
+  },
+  install = { colorscheme = { "tokyonight", "habamax" } },
+  checker = {
+    enabled = true, -- check for plugin updates periodically
+    notify = false, -- notify on update
+  }, -- automatically check for plugin updates
+  performance = {
+    rtp = {
+      -- disable some rtp plugins
+      disabled_plugins = {
+        "gzip",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
     },
-    -- Configure any other settings here. See the documentation for more details.
-    -- automatically check for plugin updates
-    checker = { enabled = true },
-    install = { colorscheme = nil },
+  },
 })
-require("lazy.view.config").keys.close = "<esc>"
-
--- Keymaps
-vim.keymap.set({ "n", "x" }, "<C-j>", "<C-d>", { noremap = true })
-vim.keymap.set({ "n", "x" }, "<C-k>", "<C-u>", { noremap = true })
-vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "No highlights" })
-vim.keymap.set("n", "<leader>bb", ":bn<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bd", ":bd<cr>", { desc = "Delete buffer" })
