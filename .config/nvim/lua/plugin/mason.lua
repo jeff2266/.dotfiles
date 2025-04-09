@@ -10,6 +10,7 @@ return {
                 "stylua",
                 "shfmt",
             },
+            PATH = "append",
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
         config = function(_, opts)
