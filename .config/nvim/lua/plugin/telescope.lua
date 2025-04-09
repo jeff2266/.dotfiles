@@ -82,7 +82,7 @@ return {
                                 -- ["<S-CR>"] = fb_actions.create_from_prompt,
                                 ["<S-CR>"] = false,
                                 -- ["<A-r>"] = fb_actions.rename,
-                                ["<C-y>r"] = fb_actions.rename,
+                                ["<C-r>"] = fb_actions.rename,
                                 ["<C-y>m"] = fb_actions.move,
                                 -- ["<A-y>"] = fb_actions.copy,
                                 ["<C-y>y"] = fb_actions.copy,
