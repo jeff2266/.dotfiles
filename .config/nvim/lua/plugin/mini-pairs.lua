@@ -1,6 +1,7 @@
 return {
     {
         "echasnovski/mini.pairs",
+        cond = (vim.g.vscode ~= nil),
         event = "VeryLazy",
         version = "*",
         opts = {

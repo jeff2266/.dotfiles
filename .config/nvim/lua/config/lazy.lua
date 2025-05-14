@@ -38,29 +38,31 @@ vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- Sync + with unnamed register on unfocus
-vim.api.nvim_create_autocmd({ "FocusGained" }, {
-    pattern = { "*" },
-    command = [[call setreg("@", getreg("+"))]],
-})
+if (vim.g.vscodevim == nil) then
+    vim.api.nvim_create_autocmd({ "FocusGained" }, {
+        pattern = { "*" },
+        command = [[call setreg("@", getreg("+"))]],
+    })
 
--- Sync + with unnamed register on unfocus
-vim.api.nvim_create_autocmd({ "FocusLost" }, {
-    pattern = { "*" },
-    command = [[call setreg("+", getreg("@"))]],
-})
+    -- Sync + with unnamed register on unfocus
+    vim.api.nvim_create_autocmd({ "FocusLost" }, {
+        pattern = { "*" },
+        command = [[call setreg("+", getreg("@"))]],
+    })
 
--- Wsl clipboard configuration
-vim.g.clipboard = {
-    name = "WslClipboard",
-    copy = {
-        ["+"] = "clip.exe",
-    },
-    paste = {
-        ["+"] =
-        'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-    cache_enabled = 0,
-}
+    -- Wsl clipboard configuration
+    vim.g.clipboard = {
+        name = "WslClipboard",
+        copy = {
+            ["+"] = "clip.exe",
+        },
+        paste = {
+            ["+"] =
+            'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        },
+        cache_enabled = 0,
+    }
+end
 
 -- Keymap resets
 vim.keymap.set("n", "Q", "<nop>", { noremap = true })

@@ -1,6 +1,7 @@
 return {
     {
         "folke/tokyonight.nvim",
+        cond = not (vim.g.vscode ~= nil),
         lazy = false,
         priority = 1000,
         config = function()

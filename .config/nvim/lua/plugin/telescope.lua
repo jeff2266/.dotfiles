@@ -1,6 +1,7 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
+        cond = not (vim.g.vscode ~= nil),
         branch = "master",
         dependencies = {
             "nvim-lua/plenary.nvim",
